@@ -1,6 +1,10 @@
 {
-  "name": "configurator",
-  "version": "0.1.0",
+  "name": "coffee-config",
+  "description": "Simple configuration module for node.js",
+  "keywords": ["util", "configuration"],
+  "author": "Dominik Krejcik <dominik.krejcik@gmail.com>",
+  "repository": {"type": "git", "url": "git://github.com/dominikkrejcik/configurator.git"},
+  "version": "0.1.1",
   "dependencies": {
   }
 }
