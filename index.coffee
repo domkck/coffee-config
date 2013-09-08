@@ -6,12 +6,12 @@ class Configurator
     @defaultEnv = 'development'
 
   # Loads configuration synchronously
-  sync: (dir) ->
-    @_loadConfigFileSync dir
+  sync: ->
+    @_loadConfigFileSync()
 
   # Loads configuration asynchronously
-  async: (dir, callback) ->
-    @_loadConfigFileAsync dir, =>
+  async: (callback) ->
+    @_loadConfigFileAsync =>
       callback() if callback?
 
   # Tells configurator which environment to default to
@@ -28,15 +28,15 @@ class Configurator
     env ?= @defaultEnv
     @[env]
 
-  _loadConfigFileSync: (dir) ->
-    data = fs.readFileSync dir+'/config.json'
+  _loadConfigFileSync: ->
+    data = fs.readFileSync process.cwd()+'/config.json'
     json = JSON.parse data
     for key, value of json
         @[key] = value
     this
 
-  _loadConfigFileAsync: (dir, callback) ->
-    data = fs.readFile dir+'/config.json', (err, data) =>
+  _loadConfigFileAsync: (callback) ->
+    data = fs.readFile process.cwd()+'/config.json', (err, data) =>
       if err then throw err
       json = JSON.parse data
       for key, value of json
